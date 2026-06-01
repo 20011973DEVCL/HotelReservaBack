@@ -1,12 +1,23 @@
+using HotelReservaBack.Application.Interfaces;
+using HotelReservaBack.Application.Services;
+using HotelReservaBack.Domain.Interfaces;
+using HotelReservaBack.Infrastructure.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Servicios del contenedor
+builder.Services.AddControllers();
+
+// OpenAPI
 builder.Services.AddOpenApi();
+
+// Inyección de dependencias
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+builder.Services.AddScoped<IHotelService, HotelService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -14,28 +25,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
