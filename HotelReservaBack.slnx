@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="HotelReservaBack.Api/HotelReservaBack.Api.csproj" />
+  <Project Path="HotelReservaBack.Application/HotelReservaBack.Application.csproj" />
+  <Project Path="HotelReservaBack.Domain/HotelReservaBack.Domain.csproj" />
+  <Project Path="HotelReservaBack.Infrastructure/HotelReservaBack.Infrastructure.csproj" />
+  <Project Path="HotelReservaBack.Shared/HotelReservaBack.Shared.csproj" />
+  <Project Path="HotelReservaBack.Tests/HotelReservaBack.Tests.csproj" />
+</Solution>
