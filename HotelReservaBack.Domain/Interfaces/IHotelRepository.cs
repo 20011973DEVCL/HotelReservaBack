@@ -1,4 +1,4 @@
-using HotelReservaBack.Domain.Entities;
+﻿using HotelReservaBack.Domain.Entities;
 
 namespace HotelReservaBack.Domain.Interfaces;
 

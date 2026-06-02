@@ -1,4 +1,4 @@
-namespace HotelReservaBack.Domain.Entities;
+﻿namespace HotelReservaBack.Domain.Entities;
 
 public class Hotel
 {

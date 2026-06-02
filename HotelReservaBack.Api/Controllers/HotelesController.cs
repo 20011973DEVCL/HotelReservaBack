@@ -1,23 +1,20 @@
+﻿using HotelReservaBack.Application.DTOs;
 using HotelReservaBack.Application.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelReservaBack.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HotelesController : ControllerBase
+public class HotelesController(IHotelService hotelService) : ControllerBase
 {
-    private readonly IHotelService _hotelService;
-
-    public HotelesController(IHotelService hotelService)
-    {
-        _hotelService = hotelService;
-    }
+    private readonly IHotelService _hotelService = hotelService;
 
     [HttpGet]
     public async Task<IActionResult> ObtenerHoteles()
     {
-        var hoteles = await _hotelService.ObtenerHotelesAsync();
+        List<HotelDto> hoteles = await _hotelService.ObtenerHotelesAsync();
         return Ok(hoteles);
     }
 }

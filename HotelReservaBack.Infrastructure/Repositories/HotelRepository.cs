@@ -1,30 +1,27 @@
-using HotelReservaBack.Domain.Entities;
+﻿using HotelReservaBack.Domain.Entities;
 using HotelReservaBack.Domain.Interfaces;
+
 using Microsoft.Extensions.Configuration;
+
 using Npgsql;
 
 namespace HotelReservaBack.Infrastructure.Repositories;
 
-public class HotelRepository : IHotelRepository
+public class HotelRepository(IConfiguration configuration) : IHotelRepository
 {
-    private readonly string _connectionString;
-
-    public HotelRepository(IConfiguration configuration)
-    {
-        _connectionString = configuration.GetConnectionString("HotelReserva")
+    private readonly string _connectionString = configuration.GetConnectionString("HotelReserva")
             ?? throw new Exception("No existe la cadena de conexión HotelReserva.");
-    }
 
     public async Task<List<Hotel>> ObtenerHotelesAsync()
     {
-        var lista = new List<Hotel>();
+        List<Hotel> lista = new List<Hotel>();
 
-        await using var cn = new NpgsqlConnection(_connectionString);
+        await using NpgsqlConnection cn = new NpgsqlConnection(_connectionString);
         await cn.OpenAsync();
 
-        await using var cmd = new NpgsqlCommand("SELECT * FROM sp_obtener_hoteles()", cn);
+        await using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM sp_obtener_hoteles()", cn);
 
-        await using var dr = await cmd.ExecuteReaderAsync();
+        await using NpgsqlDataReader dr = await cmd.ExecuteReaderAsync();
 
         while (await dr.ReadAsync())
         {

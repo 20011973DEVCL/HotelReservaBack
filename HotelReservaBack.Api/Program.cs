@@ -1,9 +1,9 @@
-using HotelReservaBack.Application.Interfaces;
+﻿using HotelReservaBack.Application.Interfaces;
 using HotelReservaBack.Application.Services;
 using HotelReservaBack.Domain.Interfaces;
 using HotelReservaBack.Infrastructure.Repositories;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
@@ -15,12 +15,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IHotelService, HotelService>();
 builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    _ = app.UseSwagger();
+    _ = app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
