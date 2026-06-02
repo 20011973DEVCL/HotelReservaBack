@@ -33,7 +33,12 @@ public class HotelRepository : IHotelRepository
                 HotCodigo = dr.GetInt32(dr.GetOrdinal("hot_codigo")),
                 HotNombre = dr.GetString(dr.GetOrdinal("hot_nombre")),
                 HotDireccion = dr.GetString(dr.GetOrdinal("hot_direccion")),
-                HotActivo = dr.GetBoolean(dr.GetOrdinal("hot_activo"))
+                HotTelefono = dr.IsDBNull(dr.GetOrdinal("hot_telefono")) ? null : dr.GetString(dr.GetOrdinal("hot_telefono")),
+                HotEmail = dr.IsDBNull(dr.GetOrdinal("hot_email")) ? null : dr.GetString(dr.GetOrdinal("hot_email")),
+                HotEstrellas = dr.GetInt32(dr.GetOrdinal("hot_estrellas")),
+                HotActivo = dr.GetBoolean(dr.GetOrdinal("hot_activo")),
+                ComCodigo = dr.GetInt32(dr.GetOrdinal("com_codigo")),
+                ComNombre = dr.GetString(dr.GetOrdinal("com_nombre"))
             });
         }
 

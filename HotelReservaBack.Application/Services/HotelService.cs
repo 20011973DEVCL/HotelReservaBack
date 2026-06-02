@@ -22,7 +22,12 @@ public class HotelService : IHotelService
             HotCodigo = h.HotCodigo,
             HotNombre = h.HotNombre,
             HotDireccion = h.HotDireccion,
-            HotActivo = h.HotActivo
+            HotTelefono = h.HotTelefono,
+            HotEmail = h.HotEmail,
+            HotEstrellas = h.HotEstrellas,
+            HotActivo = h.HotActivo,
+            ComCodigo = h.ComCodigo,
+            ComNombre = h.ComNombre
         }).ToList();
     }
 }

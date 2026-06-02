@@ -5,25 +5,27 @@ using HotelReservaBack.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Servicios del contenedor
 builder.Services.AddControllers();
 
-// OpenAPI
-builder.Services.AddOpenApi();
+// Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-// Inyección de dependencias
-builder.Services.AddScoped<IHotelRepository, HotelRepository>();
+// Inyeccion de dependencias
 builder.Services.AddScoped<IHotelService, HotelService>();
+builder.Services.AddScoped<IHotelRepository, HotelRepository>();
 
 var app = builder.Build();
 
-// Pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
 
 app.MapControllers();
 
