@@ -1,4 +1,4 @@
-﻿namespace HotelReservaBack.Domain.Entities;
+namespace HotelReservaBack.Domain.Entities;
 
 public class Hotel
 {
@@ -11,4 +11,5 @@ public class Hotel
     public bool HotActivo { get; set; }
     public int ComCodigo { get; set; }
     public string ComNombre { get; set; } = string.Empty;
+    public DateTime HotFechaCrea { get; set; }
 }

@@ -1,6 +1,36 @@
 @HotelReservaBack.Api_HostAddress = http://localhost:5071
 
-GET {{HotelReservaBack.Api_HostAddress}}/weatherforecast/
+# Todos los recursos exponen:
+# GET /api/{recurso}
+# GET /api/{recurso}/{id}
+# POST /api/{recurso}
+# PUT /api/{recurso}/{id}
+# DELETE /api/{recurso}/{id}
+#
+# Recursos:
+# Paises, Regiones, Ciudades, Comunas, Perfiles, Usuarios,
+# EstadosReserva, EstadosPago, Hoteles, TiposHabitacion,
+# Habitaciones, Clientes, Reservas, ReservasDetalles y Pagos.
+
+GET {{HotelReservaBack.Api_HostAddress}}/api/Hoteles
 Accept: application/json
 
 ###
+
+GET {{HotelReservaBack.Api_HostAddress}}/api/Hoteles/1
+Accept: application/json
+
+###
+
+POST {{HotelReservaBack.Api_HostAddress}}/api/Hoteles
+Content-Type: application/json
+
+{
+  "comCodigo": 1,
+  "hotNombre": "Hotel Demo",
+  "hotDireccion": "Av. Principal 123",
+  "hotTelefono": "+56 2 1234 5678",
+  "hotEmail": "contacto@hoteldemo.cl",
+  "hotEstrellas": 4,
+  "hotActivo": true
+}
